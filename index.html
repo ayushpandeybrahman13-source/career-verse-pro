@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CareerVerse Pro</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<div id="particles-js"></div>
+
+<header>
+<h2>CareerVerse 🚀</h2>
+<nav>
+<a href="index.html">Home</a>
+<a href="quiz.html">Quiz</a>
+<a href="contact.html">Contact</a>
+</nav>
+</header>
+
+<section class="hero">
+<h1 class="typing"></h1>
+<p>Your smart AI-based career guidance platform.</p>
+<a href="quiz.html"><button class="main-btn">Start Career Test</button></a>
+</section>
+
+<section class="section">
+<h2>Explore Top Career Paths</h2>
+<div class="cards">
+
+<div class="card tilt">
+<h3>Medical 🩺</h3>
+<p>Doctor, Surgeon, Healthcare Expert</p>
+<a href="medical.html"><button>Explore</button></a>
+</div>
+
+<div class="card tilt">
+<h3>Engineering ⚙️</h3>
+<p>Build Future Technology</p>
+<a href="engineering.html"><button>Explore</button></a>
+</div>
+
+<div class="card tilt">
+<h3>Government 🏛️</h3>
+<p>Secure & Prestigious Jobs</p>
+<a href="government.html"><button>Explore</button></a>
+</div>
+
+<div class="card tilt">
+<h3>IT Sector 💻</h3>
+<p>AI, Coding, Cyber Security</p>
+<a href="it.html"><button>Explore</button></a>
+</div>
+
+</div>
+</section>
+
+<button class="chat-btn" onclick="toggleChat()">💬</button>
+
+<div class="chatbox" id="chatbox">
+<h4>Career Bot 🤖</h4>
+<div id="chat-messages"></div>
+<input type="text" id="chat-input" placeholder="Ask about careers...">
+<button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+VanillaTilt.init(document.querySelectorAll(".tilt"), {
+max:15,
+speed:400,
+glare:true,
+"max-glare":0.3
+});
+</script>
+
+</body>
+</html>
