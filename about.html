@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Quiz - CareerVerse</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#141e30,#243b55);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.quiz-container{
+    background:rgba(255,255,255,0.1);
+    padding:30px;
+    width:90%;
+    max-width:600px;
+    border-radius:15px;
+    backdrop-filter:blur(15px);
+    box-shadow:0 0 25px rgba(0,0,0,0.5);
+    animation:fadeIn 1s ease-in-out;
+}
+
+h2{
+    text-align:center;
+}
+
+.option{
+    background:rgba(255,255,255,0.2);
+    padding:10px;
+    margin:10px 0;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.option:hover{
+    background:#00c6ff;
+    transform:scale(1.05);
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    background:#00c6ff;
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+button:hover{
+    background:#0072ff;
+    color:white;
+}
+
+.progress{
+    height:8px;
+    background:rgba(255,255,255,0.2);
+    border-radius:5px;
+    margin-bottom:15px;
+}
+
+.progress-bar{
+    height:8px;
+    background:#00c6ff;
+    width:0%;
+    border-radius:5px;
+    transition:0.4s;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <h2 id="question">Question Text</h2>
+    <div id="options"></div>
+    <button onclick="nextQuestion()">Next</button>
+    <h3 id="result"></h3>
+</div>
+
+<script>
+
+const quizData = [
+{q:"You enjoy solving logical problems?",a:["Yes","No"],correct:0},
+{q:"Do you like helping sick people?",a:["Yes","No"],correct:0},
+{q:"Interested in coding and technology?",a:["Yes","No"],correct:0},
+{q:"Do you like government jobs security?",a:["Yes","No"],correct:0},
+{q:"Can you handle pressure situations?",a:["Yes","No"],correct:0},
+{q:"Do you enjoy teamwork?",a:["Yes","No"],correct:0},
+{q:"Are you good at mathematics?",a:["Yes","No"],correct:0},
+{q:"Interested in research & experiments?",a:["Yes","No"],correct:0},
+{q:"Do you prefer desk jobs?",a:["Yes","No"],correct:0},
+{q:"Do you like leadership roles?",a:["Yes","No"],correct:0},
+{q:"Are you creative?",a:["Yes","No"],correct:0},
+{q:"Interested in serving the nation?",a:["Yes","No"],correct:0},
+{q:"Do you like computers?",a:["Yes","No"],correct:0},
+{q:"Do you enjoy practical learning?",a:["Yes","No"],correct:0},
+{q:"Are you patient and calm?",a:["Yes","No"],correct:0}
+];
+
+let currentQuestion = 0;
+let score = 0;
+
+function loadQuestion(){
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const progressBar = document.getElementById("progressBar");
+
+    questionEl.innerText = quizData[currentQuestion].q;
+    optionsEl.innerHTML = "";
+
+    quizData[currentQuestion].a.forEach((option,index)=>{
+        const div = document.createElement("div");
+        div.classList.add("option");
+        div.innerText = option;
+        div.onclick = ()=>selectAnswer(index);
+        optionsEl.appendChild(div);
+    });
+
+    progressBar.style.width = ((currentQuestion)/quizData.length)*100 + "%";
+}
+
+function selectAnswer(index){
+    if(index === quizData[currentQuestion].correct){
+        score++;
+    }
+}
+
+function nextQuestion(){
+    currentQuestion++;
+    if(currentQuestion < quizData.length){
+        loadQuestion();
+    }else{
+        showResult();
+    }
+}
+
+function showResult(){
+    document.querySelector(".quiz-container").innerHTML = `
+    <h2>🎉 Quiz Completed!</h2>
+    <h3>Your Score: ${score} / ${quizData.length}</h3>
+    <p>Based on your answers, explore careers that match your interests!</p>
+    `;
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
