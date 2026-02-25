@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - CareerVerse</title>
+
+<!-- EmailJS Script -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+form{
+    background:rgba(255,255,255,0.1);
+    padding:35px;
+    width:380px;
+    border-radius:20px;
+    backdrop-filter:blur(15px);
+    box-shadow:0 0 30px rgba(0,0,0,0.5);
+    animation:fadeIn 1s ease-in-out;
+}
+
+h2{
+    text-align:center;
+    color:white;
+    margin-bottom:20px;
+}
+
+input, textarea{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:none;
+    border-radius:10px;
+    outline:none;
+    font-size:14px;
+}
+
+textarea{
+    resize:none;
+    height:100px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    background:#00c6ff;
+    border:none;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+    font-size:15px;
+}
+
+button:hover{
+    background:#0072ff;
+    color:white;
+    transform:scale(1.05);
+}
+
+#status{
+    text-align:center;
+    margin-top:15px;
+    font-weight:bold;
+    color:white;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<form id="contact-form">
+<h2>Contact Us</h2>
+
+<input type="text" name="name" value="Ayush Pandey" required>
+<input type="email" name="email" value="ayushpandeybrahman13@gmail.com" required>
+<input type="tel" name="phone" value="9208498199" required>
+<textarea name="message" placeholder="Write your message..." required></textarea>
+
+<button type="submit">Send Message</button>
+
+<div id="status"></div>
+</form>
+
+<script>
+// Initialize EmailJS
+(function(){
+emailjs.init("VHVtta0bKeC-B1SAR");
+})();
+
+// Submit Form
+document.getElementById("contact-form")
+.addEventListener("submit", function(event){
+event.preventDefault();
+
+document.getElementById("status").innerHTML="Sending... ⏳";
+
+emailjs.sendForm(
+'service_l2dmcay',
+'template_6k81mqf',
+this
+).then(function(){
+document.getElementById("status").innerHTML="Message Sent Successfully ✅";
+document.getElementById("contact-form").reset();
+}, function(error){
+document.getElementById("status").innerHTML="Failed to Send ❌";
+});
+});
+</script>
+
+</body>
+</html>
